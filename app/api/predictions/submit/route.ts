@@ -31,8 +31,10 @@ export async function POST(request: Request) {
 
         await prisma.prediction.upsert({
           where: {
-            userId,
-            categoryId: prediction.categoryId,
+            userId_categoryId: {
+              userId,
+              categoryId: prediction.categoryId,
+            },
           },
           update: {
             nomineeId: prediction.nomineeId,
@@ -46,7 +48,10 @@ export async function POST(request: Request) {
       }
     });
 
-    return NextResponse.json({ message: "Predictions submitted successfully" });
+    return NextResponse.json({
+      message: "Predictions submitted successfully",
+      result,
+    });
   } catch (error) {
     console.error("Failed to submit predictions:", error);
     return NextResponse.json(

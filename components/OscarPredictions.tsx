@@ -13,6 +13,7 @@ export function OscarPredictions({ categories }) {
   const [predictions, setPredictions] = useState({})
   const [activeTab, setActiveTab] = useState("all")
 
+  console.log(activeTab);
   useEffect(() => {
     if (session?.user?.id) {
       fetchUserPredictions(session.user.id)
@@ -26,7 +27,6 @@ export function OscarPredictions({ categories }) {
       setPredictions(data.predictions)
     }
   }
-  console.log(predictions);
 
   const updatePrediction = (categoryId: string, nomineeId: string) => {
     setPredictions((prev) => ({

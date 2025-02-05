@@ -7,7 +7,7 @@ import type { Session } from "next-auth"
 import { signOut, useSession } from "next-auth/react"
 
 interface MainContentProps {
-  categories: any[] // Replace 'any' with the correct type for your categories
+  categories: unknown[] // Replace 'any' with the correct type for your categories
 }
 
 export function MainContent({ categories }: MainContentProps) {
