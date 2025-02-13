@@ -22,6 +22,8 @@ model User {
   predictions   Prediction[]
   rooms         UserRoom[]
   isAdmin       Boolean      @default(false)
+  seenMovies    SeenMovie[]
+
 }
 
 model Prediction {
@@ -52,6 +54,8 @@ model Nominee {
   isWinner    Boolean      @default(false)
   category    Category     @relation(fields: [categoryId], references: [id])
   predictions Prediction[]
+  seenMovies  SeenMovie[]
+
 }
 
 model Room {
@@ -72,6 +76,18 @@ model UserRoom {
   room      Room     @relation(fields: [roomId], references: [id])
 
   @@unique([userId, roomId])
+}
+
+model SeenMovie {
+  id        String   @id @default(cuid())
+  userId    String
+  nomineeId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  nominee   Nominee  @relation(fields: [nomineeId], references: [id])
+
+  @@unique([userId, nomineeId])
 }
 
 

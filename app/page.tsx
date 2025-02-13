@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "./api/auth/[...nextauth]/route"
+import { authOptions } from "./api/auth/authOptions"
 import { prisma } from "@/lib/db"
 import { UserDashboard } from "@/components/UserDashboard"
 import { Button } from "@/components/ui/button"

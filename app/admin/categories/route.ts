@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { Nominee, PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/authOptions";
 
 const prisma = new PrismaClient();
 
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
         data: {
           name: category.name,
           nominees: {
-            upsert: category.nominees.map((nominee) => ({
+            upsert: category.nominees.map((nominee: Nominee) => ({
               where: { id: nominee.id },
               update: { name: nominee.name },
               create: { name: nominee.name },

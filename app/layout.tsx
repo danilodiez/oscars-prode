@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import { SessionProvider } from "@/components/SessionProvider";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "./api/auth/authOptions";
 import "./globals.css";
 import type React from "react"; // Added import for React
 import { Toaster } from "@/components/ui/toaster";

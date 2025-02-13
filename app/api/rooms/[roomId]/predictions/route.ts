@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../../auth/[...nextauth]/route";
+import { authOptions } from "../../../auth/authOptions";
 import { prisma } from "@/lib/db";
 
 export async function GET(
@@ -50,9 +50,11 @@ export async function GET(
 
     const formattedPredictions = roomPredictions.reduce((acc, userRoom) => {
       const userId = userRoom.user.id;
+      //@ts-expect-error a a a
       acc[userId] = {
         name: userRoom.user.name || userRoom.user.email,
         predictions: userRoom.user.predictions.reduce((predAcc, pred) => {
+          //@ts-expect-error a a a
           predAcc[pred.category.id] = {
             categoryName: pred.category.name,
             nomineeId: pred.nominee.id,
